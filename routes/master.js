@@ -16,8 +16,8 @@ router.get('/:type?',function(req,res,next){
           res.json(err);
         }
         else {         
-          
-          var master = { info: null, countries: null, regions: null, currencies: null };
+
+          var master = { info: null, countries: null, regions: null, currencies: null, industries: null, subindustries: null };
 
           master.info = { version: '1.0.0' };
 
@@ -38,12 +38,31 @@ router.get('/:type?',function(req,res,next){
                 else {
 
                   master.currencies = rows;
-                  res.json({ "success": true, "results": master });
+
+                  Industry.getAllIndustries(function (err, rows) {
+                    if (err) {
+                        res.json(err);
+                    }
+                    else {
+
+                      master.industries = rows;
+
+                      SubIndustry.getAllSubIndustries(function (errr, rows) {
+                        if (err) {
+                            res.json(err);
+                        } else {
+
+                          master.subindustries = rows;
+
+                          res.json({ "success": true, "results": master });
+                        }
+                      });
+                    }
+                  });
                 }
               });             
             }
           });
-          
         }
       });
     } 

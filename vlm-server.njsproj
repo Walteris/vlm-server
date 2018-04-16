@@ -52,6 +52,7 @@
     <Compile Include="routes\index.js" />
     <Compile Include="routes\industries.js" />
     <Compile Include="routes\kpis.js" />
+    <Compile Include="routes\master.js" />
     <Compile Include="routes\regions.js" />
     <Compile Include="routes\subindustries.js" />
     <Compile Include="routes\surveys.js" />
