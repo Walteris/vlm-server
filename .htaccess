@@ -1,0 +1,10 @@
+RewriteEngine On
+
+#RewriteRule ^ $1 [L,NC,R]
+
+#RewriteRule ^vlm/(.*) http://%{HTTP_HOST}:3000 [P]
+
+#RewriteBase /vlm
+RewriteRule ^(.*)$ http://%{HTTP_HOST}:3000/$1 [P]
+
+#RewriteRule ^(.*)$ http://%{HTTP_HOST}/test/$1 [L]
