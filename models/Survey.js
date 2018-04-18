@@ -11,7 +11,7 @@ var Survey = {
       "A.T0003_ID, OT.T0003_Desc as texttype, AT.T0004_ID, TR.T0004_Desc as objtype, L.T0018_ID, L.T0018_Desc as Language, AT.T0012_ID, T.T0012_Text as valuetext, T.T0012_Display_Cfg as displaycfg, T.T0012_Control_Cfg, " +
       "AT.T0019_AutoID as autoID, CR.T0017_AutoID,  CR.T0017_Cust_Resp custresp, CA.T0069_AutoID, U.T0014_ID User_ID, U.T0014_LastName, U.T0014_FirstName, UE.T0028_Email Email_Assignee,  CA.T0014_ID_Assigner  " +
       "from t0049_surveys S " +
-      "join j0005_1_8_survey_structure SS on SS.T0001_ID  = S.T0001_ID  and SS.T0005_Web_Mobile = 3 " +
+      "join j0005_1_8_survey_structure SS on SS.T0001_ID  = S.T0001_ID  and SS.T0005_Web_Mobile in (1,3) " +
       "join t0008_assets A on A.T0008_ID= SS.T0008_ID   " +
       "join c0003_objects_types OT on OT.T0003_ID = A.T0003_ID " +
       "left join c0006_assets_it_def_types AD on AD.T0006_ID = A.T0006_ID  " +
