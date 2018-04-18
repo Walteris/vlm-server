@@ -12,7 +12,7 @@ log.txt
 .vscode/
 npm-debug.log*
 .editorconfig
-utils/dbconnection*.js
+dbconnection*.js
 
 .idea/
 .sourcemaps/
@@ -34,7 +34,6 @@ plugins/android.json
 plugins/ios.json
 www/
 $RECYCLE.BIN
-utils/dbconnection.js
 
 .DS_Store
 Thumbs.db
