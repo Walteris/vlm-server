@@ -7,19 +7,25 @@ var User = {
 
     getAllUsers: function (callback)
     {
-        return db.query("select U.T0002_ID as UserID, U.T0002_User_SurName as User_SurName, U.T0002_User_FirstName as User_FirstName, U.T0024_ID as CompanyID, U.T0002_Primary_Language as Primary_Language, U.T0002_Secondary_Language as Secondary_Language, C.T0024_Name as CompanyName, C.T0037_ID as ComunityID, C.RegionID " +
-            ", RC.T0074_RegionName as RegionName, C.T0024_Division as Division, C.T0070_CountryID as CountryID, CC.T0070_CountryName as CountryName, C.T0024_TimePeriod as TimePeriod, C.T0073_IndustryID as IndustryID, " +
-            "I.T0073_IndSubIndName Ind_Name, C.T0073_SubIndID as SubIndID, SI.T0073_IndSubIndName as SIName, C.T0071_CurrencyID as CurrencyID, Cur.T0071_Abbreviation as Currency, " +
-            "C.T0037_ID OrgLevelID, Com.T0037_Desc as Comm_Desc, UE.T0023_Email as User_Email " +
-            "from t0002_ext_users U " +
-            "join t0024_companyorglevel C on C.T0024_ID = U.T0024_ID " +
-            "join t0074_regioncatalog RC on RC.T0074_RegionID = C.T0074_RegionID  " +
-            "join t0070_countrycatalog CC on CC.T0070_CountryID = C.T0070_CountryID " +
-            "join t0073_indsubind I on I.T0073_IndSubIndID = C.T0073_IndustryID " +
-            "join t0073_indsubind SI on SI.T0073_IndSubIndID = C.T0073_SubIndID " +
-            "join t0071_currencycatalog Cur on Cur.T0071_CurrencyID = C.T0071_CurrencyID " +
-            "join t0037_ve_cust_community Com on Com.T0037_ID = C.T0037_ID  " +
-            "join t0023_users_emails UE on UE.T0002_ID = U.T0002_ID", callback);
+        return db.query("select U.T0014_ID as UserID, U.T0014_LastName as User_SurName, U.T0014_FirstName as User_FirstName " +
+            ", C.T0024_ID as CompanyID, U.T0018_Primary_Language_Id as Primary_Language, U.T0018_Secondary_Language_Id as Secondary_Language, " +
+            "C.T0024_Name as CompanyName, C.T0037_ID as ComunityID, C.T0074_RegionID as RegionID  , RC.T0074_RegionName as RegionName, " +
+            "C.T0024_Division as Division, C.T0070_CountryID as CountryID, CC.T0070_CountryName as CountryName, C.T0024_TimePeriod as TimePeriod, " +
+            "C.T0073_IndustryID as IndustryID, I.T0073_IndSubIndName Ind_Name, C.T0073_SubIndID as SubIndID," + 
+            "SI.T0073_IndSubIndName as SIName, C.T0071_CurrencyID as CurrencyID, Cur.T0071_Abbreviation as Currency, " +
+            "C.T0037_ID OrgLevelID, Com.T0037_Desc as Comm_Desc, UE.T0028_Email as User_Email " +
+            "from t0014_users U " +
+            "join t0049_surveys  S on S.T0014_ID = U.T0014_ID " +
+            "join j0030_49_24_surveycompanyrelationship SCR on SCR.T0049_ID = S.T0049_ID " +
+            "join t0024_companyorglevel C on C.T0024_ID = SCR.T0024_ID  " +
+            "join t0074_regioncatalog RC on RC.T0074_RegionID = C.T0074_RegionID   " +
+            "join t0070_countrycatalog CC on CC.T0070_CountryID = C.T0070_CountryID  " +
+            "join t0073_indsubind I on I.T0073_IndSubIndID = C.T0073_IndustryID  " +
+            "join t0073_indsubind SI on SI.T0073_IndSubIndID = C.T0073_SubIndID  " +
+            "join t0071_currencycatalog Cur on Cur.T0071_CurrencyID = C.T0071_CurrencyID  " +
+            "left join t0037_ve_cust_community Com on Com.T0037_ID = C.T0037_ID   " +
+            "join t0028_user_emails UE on UE.T0014_ID = U.T0014_ID ", callback);
+
     },
 
     login: function (email, pass, callback)
