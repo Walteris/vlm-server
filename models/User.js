@@ -29,7 +29,7 @@ var User = {
         //return db.query("Select * from task",callback);
         if (true)
         {
-            callback(null, { "success": true, "apikey": "test", "first_name": "Tester", "last_name": "Tester" });        
+            callback(null, { "success": true, "apikey": "test", "first_name": "Laurent", "last_name": "Sauvage" });        
         }
         else
         {

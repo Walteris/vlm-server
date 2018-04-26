@@ -37,6 +37,20 @@ router.get('/:type?',function(req,res,next){
                 }
                 else {
 
+                  // remove eur
+                  var idx = rows.findIndex(function(k) {
+                    return k["CurrencyCode"] == "EUR";
+                  });
+
+                  if (idx >= 0) {
+                    rows.splice(idx, 1);
+                  }
+
+                  // add eur and usd at begining
+                  rows.unshift({ "ID": 1057, "CurrencyCode": "USD", "Abbreviation": "USD", "CurrencySymbol": "USD", "ConversionValue": 1, "From_Date": "2018-03-14T06:00:14.000Z", "To_Date": "2030-01-01T05:00:00.000Z" });
+                  rows.unshift({ "ID": 1058, "CurrencyCode": "EUR", "Abbreviation": "EUR", "CurrencySymbol": "EUR", "ConversionValue": 1, "From_Date": "2018-03-14T06:00:14.000Z", "To_Date": "2030-01-01T05:00:00.000Z" });
+
+                  
                   master.currencies = rows;
 
                   Industry.getAllIndustries(function (err, rows) {

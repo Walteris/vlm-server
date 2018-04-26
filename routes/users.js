@@ -78,4 +78,20 @@ router.get('/validatecaptcha', function (req, res, next) {
         res.json(helpers.vlmErr("Unauthorized"));
     }
 });
+
+router.get('/checkemail/:email', function (req, res, next) {
+  if (req.query.consumer_key && req.query.consumer_key === constants.systemUser) {
+
+    if (req.params.email) {
+
+      res.json({ "success": true, "exists": false });
+
+    } else {
+      res.json(helpers.vlmErr("Email missing"));
+    }
+  } else {
+    res.json(helpers.vlmErr("Unauthorized"));
+  }
+});
+
 module.exports = router;
